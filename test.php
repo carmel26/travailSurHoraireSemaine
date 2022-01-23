@@ -1,13 +1,13 @@
 <?php 
-  $cour[] = array('cour'=>'francais','vh'=>24,'jours'=>4) ;
-  $cour[] = array('cour'=>'anglais','vh'=>20,'jours'=>3);
-  $cour[] = array('cour'=>'kirundi','vh'=>5,'jours'=>3);
-  $cour[] = array('cour'=>'maths','vh'=>25,'jours'=>4);
-  // $cour[] = array('cour'=>'em','vh'=>5,'jours'=>2);
-  // $cour[] = array('cour'=>'geographie','vh'=>4,'jours'=>2);
-  // $cour[] = array('cour'=>'technologie','vh'=>8,'jours'=>3);
-  // $cour[] = array('cour'=>'biologie','vh'=>20,'jours'=>4);
-  // $cour[] = array('cour'=>'civisime','vh'=>2,'jours'=>1);
+  $cour[] = array('cour'=>'francais','vh'=>15) ;
+  $cour[] = array('cour'=>'anglais','vh'=>9);
+  $cour[] = array('cour'=>'kirundi','vh'=>5);
+  $cour[] = array('cour'=>'maths','vh'=>18);
+  $cour[] = array('cour'=>'technologie','vh'=>8);
+  $cour[] = array('cour'=>'biologie','vh'=>20);
+  $cour[] = array('cour'=>'civisime','vh'=>2);
+  $cour[] = array('cour'=>'em','vh'=>5);
+  $cour[] = array('cour'=>'geographie','vh'=>4);
 
 //   print_r($cour);
   $nombresDeJour = 5;
@@ -32,20 +32,27 @@ $backUpCour = $cour;
            if (count($cour) < $nombresHeuresParJours && $cptHeuresJours>=count($cour) && $cour[abs($cptHeuresJours-count($cour))]['vh']) {
                 if (isset($cour[abs($cptHeuresJours-count($cour))])?$cour[abs($cptHeuresJours-count($cour))]['cour']:'') {  
                     $cour[abs($cptHeuresJours-count($cour))]['vh'] = $cour[abs($cptHeuresJours-count($cour))]['vh']-1;  
-                    $horaireSemaines[$joursemaine][$cour[abs($cptHeuresJours-count($cour))]['cour']][$cptHeuresJours+1] = array('cour'=>$cour[abs($cptHeuresJours-count($cour))],'place'=>$cptHeuresJours);
+                    $horaireSemaines[$joursemaine][$cour[abs($cptHeuresJours-count($cour))]['cour']][$cptHeuresJours+1] = array('cour'=>$cour[abs($cptHeuresJours-count($cour))]);
                 }
            }  else { 
-              if ((isset($cour[$cptHeuresJours])?$cour[$cptHeuresJours]['cour']:'') && $cour[$cptHeuresJours]['vh']>0) { 
+              if ((isset($cour[$cptHeuresJours])?$cour[$cptHeuresJours]['cour']:'') && ($cour[$cptHeuresJours]['vh'])>0) { 
                   $cour[$cptHeuresJours]['vh'] = $cour[$cptHeuresJours]['vh']-1;  
-                  $horaireSemaines[$joursemaine][$cour[$cptHeuresJours]['cour']][$cptHeuresJours+1] = array('cour'=>$cour[$cptHeuresJours],'place'=>$cptHeuresJours);
-               }elseif ($cour[abs($cptHeuresJours-count($cour))]['vh'] == 0) {
+                  $horaireSemaines[$joursemaine][$cour[$cptHeuresJours]['cour']][$cptHeuresJours+1] = array('cour'=>$cour[$cptHeuresJours]); 
+               }else {
                     //  retourner au premier index des cours 
-                      if (isset($cour[$counterAutres])?$cour[$counterAutres]['cour']:'') {  
-                          $cour[$counterAutres]['vh'] = $cour[$counterAutres]['vh']-1;  
-                          $horaireSemaines[$joursemaine][$cour[$counterAutres]['cour']][$cptHeuresJours+1] = array('cour'=>$cour[abs($cptHeuresJours-count($cour))],'place'=>$cptHeuresJours);
+                      if (abs($cptHeuresJours-count($cour)) != $counterAutres) {
+                        
+                      }else {
                         if ($counterAutres <= count($cour)) {
                            $counterAutres ++;
                         } 
+                      }
+                      if (isset($cour[$counterAutres])?$cour[$counterAutres]['cour']:'') {  
+                          $cour[$counterAutres]['vh'] = $cour[$counterAutres]['vh']-1;  
+                          $horaireSemaines[$joursemaine][$cour[$counterAutres]['cour']][$cptHeuresJours+1] = array('cour'=>$cour[abs($cptHeuresJours-count($cour))]);
+                          if ($counterAutres <= count($cour)) {
+                            $counterAutres ++;
+                         } 
                       } 
                }
            }
