@@ -1,13 +1,15 @@
 <?php 
-  $cour[] = array('cour'=>'francais','vh'=>15) ;
-  $cour[] = array('cour'=>'anglais','vh'=>9);
+  $cour[] = array('cour'=>'francais','vh'=>4) ;
+  $cour[] = array('cour'=>'anglais','vh'=>3);
   $cour[] = array('cour'=>'kirundi','vh'=>5);
-  $cour[] = array('cour'=>'maths','vh'=>18);
-  $cour[] = array('cour'=>'technologie','vh'=>8);
-  $cour[] = array('cour'=>'biologie','vh'=>20);
+  $cour[] = array('cour'=>'maths','vh'=>3);
+  $cour[] = array('cour'=>'technologie','vh'=>6);
+  $cour[] = array('cour'=>'biologie','vh'=>4);
   $cour[] = array('cour'=>'civisime','vh'=>2);
   $cour[] = array('cour'=>'em','vh'=>5);
   $cour[] = array('cour'=>'geographie','vh'=>4);
+  $cour[] = array('cour'=>'tpa','vh'=>1);
+  $cour[] = array('cour'=>'eps','vh'=>1);
 
 //   print_r($cour);
   $nombresDeJour = 5;
@@ -36,20 +38,22 @@ $backUpCour = $cour;
                 }
            }  else { 
               if ((isset($cour[$cptHeuresJours])?$cour[$cptHeuresJours]['cour']:'') && ($cour[$cptHeuresJours]['vh'])>0) { 
-                  $cour[$cptHeuresJours]['vh'] = $cour[$cptHeuresJours]['vh']-1;  
                   $horaireSemaines[$joursemaine][$cour[$cptHeuresJours]['cour']][$cptHeuresJours+1] = array('cour'=>$cour[$cptHeuresJours]); 
+                  $cour[$cptHeuresJours]['vh'] = $cour[$cptHeuresJours]['vh']-1;  
                }else {
                     //  retourner au premier index des cours 
-                      if (abs($cptHeuresJours-count($cour)) != $counterAutres) {
+                      if (abs($cptHeuresJours-(count($cour)-1)) != $counterAutres) {
                         
                       }else {
                         if ($counterAutres <= count($cour)) {
                            $counterAutres ++;
                         } 
                       }
-                      if (isset($cour[$counterAutres])?$cour[$counterAutres]['cour']:'') {  
+                       
+                      if (isset($cour[$counterAutres])?$cour[$counterAutres]['cour']:'') { 
+                          $horaireSemaines[$joursemaine][$cour[$counterAutres]['cour']][$cptHeuresJours+1] =
+                           array('cour'=>$cour[abs($cptHeuresJours-(count($cour)-1))]); 
                           $cour[$counterAutres]['vh'] = $cour[$counterAutres]['vh']-1;  
-                          $horaireSemaines[$joursemaine][$cour[$counterAutres]['cour']][$cptHeuresJours+1] = array('cour'=>$cour[abs($cptHeuresJours-count($cour))]);
                           if ($counterAutres <= count($cour)) {
                             $counterAutres ++;
                          } 
