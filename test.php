@@ -1,15 +1,50 @@
 <?php 
-  $cour[] = array('cour'=>'francais','vh'=>4) ;
-  $cour[] = array('cour'=>'anglais','vh'=>3);
-  $cour[] = array('cour'=>'kirundi','vh'=>5);
-  $cour[] = array('cour'=>'maths','vh'=>3);
-  $cour[] = array('cour'=>'technologie','vh'=>6);
-  $cour[] = array('cour'=>'biologie','vh'=>4);
-  $cour[] = array('cour'=>'civisime','vh'=>2);
-  $cour[] = array('cour'=>'em','vh'=>5);
-  $cour[] = array('cour'=>'geographie','vh'=>4);
-  $cour[] = array('cour'=>'tpa','vh'=>1);
-  $cour[] = array('cour'=>'eps','vh'=>1);
+  $cour = [
+    [
+      'cour'=>'francais',
+      'vh'=>4
+    ],
+    [
+      'cour'=>'anglais',
+      'vh'=>3
+    ],
+    [
+      'backUpCour'=>'kirundi',
+      'vh'=>5
+    ],
+    [
+      'cour'=>'maths',
+      'vh'=>3
+    ],
+    [
+      'cour'=>'technologie',
+      'vh'=>6
+    ],
+    [
+      'cour'=>'biologie',
+      'vh'=>4
+    ],
+    [
+      'cour'=>'civisime',
+      'vh'=>2
+    ],
+    [
+      'cour'=>'em',
+      'vh'=>5
+    ],
+    [
+      'cour'=>'geographie',
+      'vh'=>4
+    ],
+    [
+      'cour'=>'tpa',
+      'vh'=>1
+    ],
+    [
+      'cour'=>'eps',
+      'vh'=>1
+    ]
+  ];
 
 //   print_r($cour);
   $nombresDeJour = 5;
